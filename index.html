@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>أضواء التقنية · TechLights</title>
+<meta name="description" content="أضواء التقنية — تطبيقات عُمانية بسيطة تخدم يومك: الطقس، صهاريج الماي، الصيانة، تعليم السياقة والمزيد.">
+<meta name="theme-color" content="#07060f">
+<link rel="icon" href="logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Inter:wght@500;700;800&display=swap">
+<style>
+:root{--bg:#07060f;--bg2:#0e0c1c;--card:#14122a;--card2:#1b1838;--line:rgba(255,255,255,.08);--fg:#f3f1ff;--muted:#a7a3c7;--p:#7c5cff;--p2:#b06bff;--pink:#ff5fb3;--ok:#3ee08f;--warn:#ffc04d}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:Cairo,system-ui,sans-serif;line-height:1.6;overflow-x:hidden}
+body.en{font-family:Inter,Cairo,system-ui,sans-serif}
+a{color:inherit;text-decoration:none}
+.wrap{width:min(1180px,100%);margin:auto;padding:0 max(16px,env(safe-area-inset-left))}
+/* background glow + stars */
+.sky{position:fixed;inset:0;z-index:-1;pointer-events:none;background:
+ radial-gradient(60% 50% at 85% 0%,rgba(176,107,255,.35),transparent 70%),
+ radial-gradient(50% 40% at 0% 20%,rgba(255,95,179,.18),transparent 70%),
+ radial-gradient(70% 60% at 50% 110%,rgba(124,92,255,.25),transparent 70%),var(--bg)}
+.sky::after{content:"";position:absolute;inset:0;background-image:radial-gradient(1px 1px at 12% 18%,#fff8,transparent),radial-gradient(1px 1px at 72% 12%,#fff6,transparent),radial-gradient(1.5px 1.5px at 40% 30%,#fff7,transparent),radial-gradient(1px 1px at 88% 44%,#fff5,transparent),radial-gradient(1px 1px at 22% 62%,#fff5,transparent),radial-gradient(1.5px 1.5px at 60% 78%,#fff6,transparent),radial-gradient(1px 1px at 8% 90%,#fff4,transparent)}
+/* nav */
+nav{position:sticky;top:0;z-index:20;backdrop-filter:blur(14px);background:rgba(7,6,15,.6);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top)}
+nav .wrap{display:flex;align-items:center;gap:14px;height:68px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:1.15rem;white-space:nowrap}
+.brand img{width:38px;height:38px}
+.brand small{display:block;font:700 .7rem/1 Inter;letter-spacing:.14em;color:var(--muted)}
+.pill{display:flex;gap:4px;padding:4px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.03);margin-inline-start:auto}
+.pill a{padding:6px 14px;border-radius:999px;font-weight:700;font-size:.9rem;color:var(--muted)}
+.pill a:hover{color:var(--fg);background:rgba(255,255,255,.06)}
+.lang{border:1px solid var(--line);background:linear-gradient(135deg,var(--p),var(--p2));color:#fff;border-radius:999px;padding:8px 16px;font:800 .85rem Inter,Cairo;cursor:pointer}
+@media (max-width:720px){.pill{display:none}.lang{margin-inline-start:auto}}
+/* hero */
+.hero{padding:72px 0 40px;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+@media (max-width:900px){.hero{grid-template-columns:1fr;padding-top:44px}}
+.tag{display:inline-flex;gap:8px;align-items:center;border:1px solid rgba(176,107,255,.4);background:rgba(124,92,255,.12);color:#d9ccff;border-radius:999px;padding:6px 14px;font-weight:700;font-size:.85rem}
+.tag i{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 12px var(--ok)}
+h1{font-size:clamp(2.4rem,7vw,4.4rem);line-height:1.15;margin:18px 0 14px;font-weight:900;letter-spacing:-.01em}
+h1 b{background:linear-gradient(90deg,#c9b8ff,var(--p2),var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{color:var(--muted);font-size:1.15rem;max-width:34em;margin:0}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.btn{display:inline-flex;align-items:center;gap:10px;border-radius:14px;padding:13px 22px;font-weight:800;border:1px solid var(--line)}
+.btn.main{background:linear-gradient(135deg,var(--p),var(--p2));border:0;box-shadow:0 14px 40px rgba(124,92,255,.45)}
+.btn.ghost{background:rgba(255,255,255,.04)}
+.btn svg{width:20px;height:20px}
+/* phones 3D */
+.stage{position:relative;height:440px;perspective:1400px}
+.ph{position:absolute;width:190px;height:390px;border-radius:38px;background:#0b0a16;border:1px solid rgba(255,255,255,.12);box-shadow:0 40px 80px rgba(0,0,0,.6),inset 0 0 0 6px #17152b;display:grid;place-items:center;overflow:hidden}
+.ph::before{content:"";position:absolute;top:12px;width:62px;height:18px;border-radius:12px;background:#000}
+.ph .scr{position:absolute;inset:10px;border-radius:30px;overflow:hidden;display:grid;place-items:center}
+.ph img{width:96px;height:96px;border-radius:24px;box-shadow:0 16px 40px rgba(0,0,0,.5)}
+.ph span{position:absolute;bottom:58px;font-weight:900;font-size:1.25rem}
+.ph.a{right:4%;top:40px;transform:rotateY(22deg) rotateZ(6deg)}
+.ph.b{right:34%;top:0;z-index:2;transform:rotateY(-4deg)}
+.ph.c{right:64%;top:50px;transform:rotateY(-24deg) rotateZ(-6deg)}
+.ph.a .scr{background:linear-gradient(160deg,#0f5f6e,#073b45)}
+.ph.b .scr{background:linear-gradient(160deg,#28408a,#0d1636)}
+.ph.c .scr{background:linear-gradient(160deg,#2b3945,#11181e)}
+@media (max-width:900px){.stage{height:360px;transform:scale(.82);transform-origin:top center}}
+@media (max-width:480px){.stage{height:300px;transform:scale(.66)}.ph.a{right:-6%}.ph.c{right:74%}}
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:30px 0 70px}
+@media (max-width:820px){.stats{grid-template-columns:repeat(2,1fr)}}
+.st{background:linear-gradient(180deg,var(--card),var(--bg2));border:1px solid var(--line);border-radius:20px;padding:18px 20px;position:relative}
+.st .k{color:var(--muted);font-weight:700;font-size:.9rem}
+.st .v{font:800 2.2rem/1.1 Inter,Cairo;margin-top:10px;display:flex;align-items:center;gap:10px}
+.st .v em{white-space:nowrap;font:700 .72rem Inter;font-style:normal;background:rgba(62,224,143,.15);color:var(--ok);border-radius:999px;padding:3px 8px}
+.st .ic{position:absolute;top:16px;inset-inline-end:16px;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;color:#cfc4ff}
+/* section */
+.sec h2{font-size:clamp(1.8rem,4.5vw,2.6rem);margin:0;font-weight:900}
+.sec p.sub{color:var(--muted);margin:6px 0 24px;font-size:1.05rem}
+.head{display:flex;justify-content:space-between;align-items:end;gap:14px;flex-wrap:wrap}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.filters button{border:1px solid var(--line);background:rgba(255,255,255,.04);color:var(--muted);border-radius:999px;padding:7px 16px;font:700 .9rem Cairo,Inter;cursor:pointer}
+.filters button[aria-pressed=true]{background:var(--fg);color:var(--bg)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media (max-width:980px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:620px){.grid{grid-template-columns:1fr}}
+.app{background:linear-gradient(180deg,var(--card),#100e22);border:1px solid var(--line);border-radius:22px;padding:18px;display:grid;gap:14px;position:relative;transition:transform .25s,border-color .25s,box-shadow .25s}
+.app:hover{transform:translateY(-4px);border-color:rgba(176,107,255,.5);box-shadow:0 20px 50px rgba(124,92,255,.18)}
+.app .top{display:flex;gap:14px;align-items:center}
+.app img{width:60px;height:60px;border-radius:16px;flex:none;box-shadow:0 8px 20px rgba(0,0,0,.4)}
+.app h3{margin:0;font-size:1.25rem;font-weight:900}
+.app .one{color:var(--muted);font-size:.92rem;margin:0}
+.app .desc{margin:0;color:#d8d4f2;font-size:.95rem}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chips span{font-size:.76rem;font-weight:700;border:1px solid var(--line);background:rgba(255,255,255,.04);border-radius:8px;padding:3px 9px;color:#cbc6ea}
+.badge{position:absolute;top:14px;inset-inline-end:14px;font:800 .72rem Cairo,Inter;border-radius:999px;padding:3px 10px}
+.badge.live{background:rgba(62,224,143,.14);color:var(--ok);border:1px solid rgba(62,224,143,.35)}
+.badge.soon{background:rgba(255,192,77,.12);color:var(--warn);border:1px solid rgba(255,192,77,.3)}
+.app .acts{display:flex;gap:8px;margin-top:auto}
+.app .acts a{flex:1;text-align:center;border-radius:12px;padding:10px;font-weight:800;font-size:.9rem;border:1px solid var(--line);background:rgba(255,255,255,.04)}
+.app .acts a.store{background:#fff;color:#0b0a16;border:0}
+.app .acts a.store.off{background:rgba(255,255,255,.08);color:var(--muted);pointer-events:none}
+/* features */
+.feat{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:80px 0}
+@media (max-width:820px){.feat{grid-template-columns:1fr}}
+.f{border:1px solid var(--line);border-radius:22px;padding:22px;background:rgba(255,255,255,.025)}
+.f b{display:block;font-size:1.15rem;margin:10px 0 4px}
+.f p{margin:0;color:var(--muted)}
+.f .ic{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,var(--p),var(--p2));font-size:1.4rem}
+/* contact */
+.contact{border-radius:28px;padding:36px;background:linear-gradient(135deg,#6b4dff,#a35cff 60%,#ff5fb3);display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;box-shadow:0 30px 80px rgba(124,92,255,.35)}
+.contact h2{margin:0;font-size:clamp(1.6rem,4vw,2.3rem);font-weight:900}
+.contact p{margin:6px 0 0;opacity:.9}
+.contact .btn{background:#fff;color:#1b1338;border:0}
+footer{color:var(--muted);text-align:center;padding:40px 0 calc(30px + env(safe-area-inset-bottom));font-size:.9rem}
+footer a{color:#d6ccff}
+.en-only{display:none}body.en .en-only{display:initial}body.en .ar-only{display:none}
+</style>
+</head>
+<body>
+<div class="sky" aria-hidden="true"></div>
+
+<nav><div class="wrap">
+  <a class="brand" href="#"><img src="logo.svg" alt=""><span><span data-ar="أضواء التقنية" data-en="TechLights">أضواء التقنية</span><small>TECHLIGHTS.APP</small></span></a>
+  <div class="pill"><a href="#apps" data-ar="التطبيقات" data-en="Apps">التطبيقات</a><a href="#why" data-ar="ليش نحن" data-en="Why us">ليش نحن</a><a href="#contact" data-ar="تواصل" data-en="Contact">تواصل</a></div>
+  <button class="lang" id="lang" type="button">English</button>
+</div></nav>
+
+<main class="wrap">
+  <section class="hero">
+    <div>
+      <span class="tag"><i></i><span data-ar="تطبيقات عُمانية · مجانية" data-en="Omani apps · Free">تطبيقات عُمانية · مجانية</span></span>
+      <h1 data-ar-html="تقنية بسيطة<br><b>تنوّر يومك</b>" data-en-html="Simple tech<br><b>that lights up your day</b>">تقنية بسيطة<br><b>تنوّر يومك</b></h1>
+      <p class="lead" data-ar="أضواء التقنية تصمم تطبيقات عملية للناس في سلطنة عُمان: طقس وأنواء، صهاريج ماي، صيانة المنازل، تعليم السياقة، والمزيد. بالعربي والإنجليزي، وبدون تعقيد." data-en="TechLights builds practical apps for people in Oman: weather and seasons, water tankers, home maintenance, driving lessons and more. Arabic and English, no hassle.">أضواء التقنية تصمم تطبيقات عملية للناس في سلطنة عُمان: طقس وأنواء، صهاريج ماي، صيانة المنازل، تعليم السياقة، والمزيد. بالعربي والإنجليزي، وبدون تعقيد.</p>
+      <div class="cta">
+        <a class="btn main" href="#apps"><span data-ar="تصفّح التطبيقات" data-en="Browse apps">تصفّح التطبيقات</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M15 6l-6 6 6 6"/></svg></a>
+        <a class="btn ghost" href="#contact" data-ar="عندك فكرة تطبيق؟" data-en="Have an app idea?">عندك فكرة تطبيق؟</a>
+      </div>
+    </div>
+    <div class="stage" aria-hidden="true">
+      <div class="ph c"><div class="scr"><img src="icons/rukhsati.png" alt=""><span data-ar="رخصتي" data-en="Rukhsati">رخصتي</span></div></div>
+      <div class="ph b"><div class="scr"><img src="icons/manakh.png" alt=""><span data-ar="مناخ" data-en="Manakh">مناخ</span></div></div>
+      <div class="ph a"><div class="scr"><img src="icons/suqya.png" alt=""><span data-ar="سُقيا" data-en="Suqya">سُقيا</span></div></div>
+    </div>
+  </section>
+
+  <section class="stats">
+    <div class="st"><div class="ic">▦</div><div class="k" data-ar="تطبيقات" data-en="Apps">تطبيقات</div><div class="v"><span id="nApps">5</span></div></div>
+    <div class="st"><div class="ic">★</div><div class="k" data-ar="تقييم سُقيا" data-en="Suqya rating">تقييم سُقيا</div><div class="v">5.0 <em>App Store</em></div></div>
+    <div class="st"><div class="ic">◎</div><div class="k" data-ar="يغطي" data-en="Covers">يغطي</div><div class="v" style="font-size:1.6rem" data-ar="كل الولايات" data-en="All wilayats">كل الولايات</div></div>
+    <div class="st"><div class="ic">Aa</div><div class="k" data-ar="اللغات" data-en="Languages">اللغات</div><div class="v" style="font-size:1.6rem">AR · EN</div></div>
+  </section>
+
+  <section class="sec" id="apps">
+    <div class="head"><div><h2 data-ar="تطبيقاتنا" data-en="Our apps">تطبيقاتنا</h2><p class="sub" data-ar="كل تطبيق يحل مشكلة وحدة، ويحلها زين." data-en="Each app solves one problem, and solves it well.">كل تطبيق يحل مشكلة وحدة، ويحلها زين.</p></div></div>
+    <div class="filters" id="filters"></div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section class="feat" id="why">
+    <div class="f"><div class="ic">🧭</div><b data-ar="عُماني من البداية" data-en="Built for Oman">عُماني من البداية</b><p data-ar="كل محافظات وولايات السلطنة، وباللهجة اللي يفهمها الكل." data-en="Every governorate and wilayat, in language everyone understands.">كل محافظات وولايات السلطنة، وباللهجة اللي يفهمها الكل.</p></div>
+    <div class="f"><div class="ic">⚡</div><b data-ar="بسيط وسريع" data-en="Simple and fast">بسيط وسريع</b><p data-ar="بدون تسجيل معقّد. تفتح التطبيق وتوصل للي تبيه بضغطة." data-en="No complicated sign-up. Open the app and get what you need in a tap.">بدون تسجيل معقّد. تفتح التطبيق وتوصل للي تبيه بضغطة.</p></div>
+    <div class="f"><div class="ic">🔒</div><b data-ar="خصوصيتك أولًا" data-en="Privacy first">خصوصيتك أولًا</b><p data-ar="ما نبيع بياناتك، وما فيه إعلانات ولا تتبّع." data-en="We never sell your data. No ads, no tracking.">ما نبيع بياناتك، وما فيه إعلانات ولا تتبّع.</p></div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div><h2 data-ar="عندك فكرة تطبيق؟" data-en="Got an app idea?">عندك فكرة تطبيق؟</h2><p data-ar="تواصل معنا، ونحوّل فكرتك لتطبيق في متجر أبل وجوجل." data-en="Get in touch and we'll turn your idea into an app on the App Store and Google Play.">تواصل معنا، ونحوّل فكرتك لتطبيق في متجر أبل وجوجل.</p></div>
+    <a class="btn" href="mailto:design.omani1@gmail.com">✉️ design.omani1@gmail.com</a>
+  </section>
+</main>
+
+<footer>© 2026 <span data-ar="أضواء التقنية · مسقط، سلطنة عُمان" data-en="TechLights · Muscat, Oman">أضواء التقنية · مسقط، سلطنة عُمان</span></footer>
+
+<script>
+const APPS = [
+  { id:'manakh', live:true, store:'https://apps.apple.com/app/id6823329197', web:'',
+    name:['مناخ','Manakh'], one:['الطقس والفلك والأنواء','Weather, sky & seasons'],
+    desc:['طقس ولايتك لحظة بلحظة، مواقيت الصلاة والقبلة، الأنواء والتقويم الفلكي، ومشاهدات الطقس من المتابعين.','Live weather for your wilayat, prayer times and qibla, traditional seasons, and community weather sightings.'],
+    tags:[['طقس','Weather'],['فلك','Astronomy'],['صلاة','Prayer']], cat:'life' },
+  { id:'suqya', live:true, store:'https://apps.apple.com/app/id6824513927', web:'https://shmmuh8-design.github.io/Suqya/',
+    name:['سُقيا','Suqya'], one:['صهريج ماي لين باب بيتك','Water tanker to your door'],
+    desc:['اختار ولايتك وحجم الصهريج، وشوف أقرب الصهاريج وأسعارها، واطلب باتصال أو واتساب.','Pick your wilayat and tank size, compare nearby tankers and order by call or WhatsApp.'],
+    tags:[['خدمات','Services'],['ماي','Water'],['واتساب','WhatsApp']], cat:'services' },
+  { id:'khidmati', live:false, store:'', web:'https://shmmuh8-design.github.io/Khidmati/',
+    name:['خدماتي','Khidmati'], one:['صيانة المنازل','Home maintenance'],
+    desc:['مؤسسات وفنيين للتكييف والكهرباء والسباكة والنجارة وغيرها، في كل الولايات، وتتواصل معهم مباشرة.','Companies and technicians for AC, electrical, plumbing, carpentry and more — contact them directly.'],
+    tags:[['خدمات','Services'],['صيانة','Maintenance']], cat:'services' },
+  { id:'rukhsati', live:false, store:'', web:'https://shmmuh8-design.github.io/rukhsati/',
+    name:['رخصتي','Rukhsati'], one:['تعليم السياقة','Driving lessons'],
+    desc:['معلّمين ومعلّمات سياقة في ولايتك، أسعار واضحة، وطلب حصص بالواتساب، أو سجّل طلبك وخلّهم يتواصلون معك.','Driving instructors in your wilayat with clear prices; request lessons on WhatsApp or post a request.'],
+    tags:[['تعليم','Education'],['سياقة','Driving']], cat:'edu' },
+  { id:'mandoos', live:false, store:'', web:'https://shmmuh8-design.github.io/mandoos/',
+    name:['المندوس','Al Mandoos'], one:['سوق التراث والمقتنيات','Heritage & antiques market'],
+    desc:['بيع وشراء التراث العُماني والمقتنيات القديمة: خناجر، فضيات، مناديس وتحف، بين البائع والمشتري مباشرة.','Buy and sell Omani heritage and collectibles directly between buyers and sellers.'],
+    tags:[['تسوّق','Shopping'],['تراث','Heritage']], cat:'life' },
+];
+const CATS = [['all',['الكل','All']],['services',['خدمات','Services']],['life',['نمط حياة','Lifestyle']],['edu',['تعليم','Education']]];
+let EN = /^en/i.test(navigator.language||'') && !/^ar/i.test(navigator.language||'');
+try{ const s = localStorage.getItem('tl-lang'); if(s) EN = s === 'en'; }catch(e){}
+let CAT = 'all';
+const T = a => a[EN ? 1 : 0];
+function el(t, a, ...k){ const e = document.createElement(t); for(const [x,v] of Object.entries(a||{})){ if(x==='text') e.textContent=v; else e.setAttribute(x,v); } k.flat().forEach(c=>c&&e.append(c)); return e; }
+function draw(){
+  const f = document.getElementById('filters'); f.replaceChildren(...CATS.map(([k,n]) => { const b = el('button',{type:'button','aria-pressed':String(CAT===k),text:T(n)}); b.onclick=()=>{ CAT=k; draw(); }; return b; }));
+  const g = document.getElementById('grid'); g.replaceChildren(...APPS.filter(a => CAT==='all' || a.cat===CAT).map(a => el('article',{class:'app'},
+    el('span',{class:'badge '+(a.live?'live':'soon'),text:a.live?T(['متوفر الحين','Available']):T(['قريبًا','Coming soon'])}),
+    el('div',{class:'top'}, el('img',{src:'icons/'+a.id+'.png',alt:T(a.name),loading:'lazy'}), el('div',{}, el('h3',{text:T(a.name)}), el('p',{class:'one',text:T(a.one)}))),
+    el('p',{class:'desc',text:T(a.desc)}),
+    el('div',{class:'chips'}, ...a.tags.map(t => el('span',{text:T(t)}))),
+    el('div',{class:'acts'},
+      el('a',{class:'store'+(a.live?'':' off'),href:a.store||'#',target:'_blank',rel:'noopener',text:a.live?T(['حمّله من App Store','Get it on App Store']):T(['قريبًا في App Store','Coming to App Store'])}),
+      a.web ? el('a',{href:a.web,target:'_blank',rel:'noopener',text:T(['جرّبه على الويب','Try on the web'])}) : null))));
+  document.getElementById('nApps').textContent = APPS.length;
+}
+function applyLang(){
+  document.documentElement.lang = EN ? 'en' : 'ar'; document.documentElement.dir = EN ? 'ltr' : 'rtl'; document.body.classList.toggle('en', EN);
+  document.querySelectorAll('[data-ar]').forEach(n => n.textContent = EN ? n.dataset.en : n.dataset.ar);
+  document.querySelectorAll('[data-ar-html]').forEach(n => n.innerHTML = EN ? n.dataset.enHtml : n.dataset.arHtml);
+  document.getElementById('lang').textContent = EN ? 'العربية' : 'English';
+  document.title = EN ? 'TechLights · Omani apps' : 'أضواء التقنية · TechLights';
+  draw();
+}
+document.getElementById('lang').onclick = () => { EN = !EN; try{ localStorage.setItem('tl-lang', EN ? 'en' : 'ar'); }catch(e){} applyLang(); };
+applyLang();
+</script>
+</body>
+</html>
