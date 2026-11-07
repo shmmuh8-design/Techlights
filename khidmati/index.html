@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>خدماتي · أضواء التقنية</title>
+<meta name="description" content="مؤسسات وفنيين للتكييف والكهرباء والسباكة والنجارة وغيرها، في كل الولايات، وتتواصل معهم مباشرة.">
+<meta name="theme-color" content="#07060f">
+<link rel="icon" href="../icons/khidmati.png">
+<link rel="apple-touch-icon" href="../icons/khidmati.png">
+<meta property="og:title" content="خدماتي — صيانة المنازل">
+<meta property="og:description" content="مؤسسات وفنيين للتكييف والكهرباء والسباكة والنجارة وغيرها، في كل الولايات، وتتواصل معهم مباشرة.">
+<meta property="og:image" content="https://techlights.app/icons/khidmati.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Inter:wght@500;700;800&display=swap">
+<style>
+:root{--bg:#07060f;--card:#14122a;--line:rgba(255,255,255,.09);--fg:#f3f1ff;--muted:#a7a3c7;--p:#7c5cff;--p2:#b06bff;--app:#1d56c9}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:Cairo,system-ui,sans-serif;line-height:1.6;overflow-x:hidden}
+body.en{font-family:Inter,Cairo,system-ui,sans-serif}
+a{color:inherit;text-decoration:none}
+.wrap{width:min(880px,100%);margin:auto;padding:0 16px}
+.sky{position:fixed;inset:0;z-index:-1;background:radial-gradient(70% 45% at 50% 0%,color-mix(in srgb,var(--app) 70%,transparent),transparent 75%),radial-gradient(50% 40% at 100% 30%,rgba(176,107,255,.18),transparent 70%),var(--bg)}
+nav{position:sticky;top:0;z-index:5;backdrop-filter:blur(14px);background:rgba(7,6,15,.6);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top)}
+nav .wrap{display:flex;align-items:center;gap:12px;height:62px}
+.brand{display:flex;align-items:center;gap:9px;font-weight:900;white-space:nowrap}
+.brand img{width:34px;height:34px}
+.lang{margin-inline-start:auto;border:0;background:linear-gradient(135deg,var(--p),var(--p2));color:#fff;border-radius:999px;padding:7px 15px;font:800 .85rem Inter,Cairo;cursor:pointer}
+.hero{text-align:center;padding:48px 0 26px}
+.hero .ic{width:128px;height:128px;border-radius:30px;box-shadow:0 24px 60px rgba(0,0,0,.55),0 0 0 1px var(--line)}
+h1{font-size:clamp(2.4rem,9vw,3.6rem);line-height:1.15;margin:18px 0 4px;font-weight:900}
+.one{color:#d9d4ff;font-size:1.25rem;font-weight:700;margin:0}
+.desc{color:var(--muted);font-size:1.08rem;max-width:36em;margin:14px auto 0}
+.cta{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:26px}
+.btn{display:inline-flex;align-items:center;gap:10px;border-radius:14px;padding:13px 22px;font-weight:800;border:1px solid var(--line)}
+.btn svg{width:22px;height:22px}
+.btn.store{background:#fff;color:#0b0a16;border:0}
+.btn.store.off{background:rgba(255,255,255,.1);color:var(--muted)}
+.btn.ghost{background:rgba(255,255,255,.05)}
+.feats{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:34px 0}
+@media (max-width:560px){.feats{grid-template-columns:1fr}}
+.f{display:flex;align-items:center;gap:14px;background:linear-gradient(180deg,var(--card),#100e22);border:1px solid var(--line);border-radius:18px;padding:16px 18px}
+.f i{font-style:normal;font-size:1.6rem;width:48px;height:48px;flex:none;display:grid;place-items:center;border-radius:14px;background:color-mix(in srgb,var(--app) 55%,#14122a)}
+.f b{font-size:1.02rem}
+.links{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:8px 0 40px}
+.links a{border:1px solid var(--line);background:rgba(255,255,255,.04);border-radius:999px;padding:8px 16px;font-weight:700;font-size:.92rem;color:#d6ccff}
+h2{font-size:1.4rem;margin:0 0 14px;font-weight:900}
+.more{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:40px}
+@media (max-width:560px){.more{grid-template-columns:repeat(2,1fr)}}
+.o{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:16px;padding:10px;background:rgba(255,255,255,.03);font-weight:800}
+.o img{width:40px;height:40px;border-radius:11px}
+footer{color:var(--muted);text-align:center;padding:10px 0 calc(30px + env(safe-area-inset-bottom));font-size:.9rem;border-top:1px solid var(--line)}
+footer a{color:#d6ccff}
+</style>
+</head>
+<body>
+<div class="sky" aria-hidden="true"></div>
+<nav><div class="wrap">
+  <a class="brand" href="../"><img src="../logo.svg" alt=""><span data-ar="أضواء التقنية" data-en="TechLights">أضواء التقنية</span></a>
+  <button class="lang" id="lang" type="button">English</button>
+</div></nav>
+<main class="wrap">
+  <section class="hero">
+    <img class="ic" src="../icons/khidmati.png" alt="">
+    <h1 data-ar="خدماتي" data-en="Khidmati">خدماتي</h1>
+    <p class="one" data-ar="صيانة المنازل" data-en="Home maintenance">صيانة المنازل</p>
+    <p class="desc" data-ar="مؤسسات وفنيين للتكييف والكهرباء والسباكة والنجارة وغيرها، في كل الولايات، وتتواصل معهم مباشرة." data-en="Companies and technicians for AC, electrical, plumbing, carpentry and more across Oman. Contact them directly.">مؤسسات وفنيين للتكييف والكهرباء والسباكة والنجارة وغيرها، في كل الولايات، وتتواصل معهم مباشرة.</p>
+    <div class="cta"><span class="btn store off"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.4 12.6c0-2.4 2-3.6 2.1-3.7-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.2-.8-1.6 0-3.1 1-4 2.4-1.7 3-.4 7.3 1.2 9.7.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8s1.9.8 3.2.8c1.3 0 2.1-1.2 2.9-2.4.9-1.4 1.3-2.7 1.3-2.8 0 0-2.4-.9-2.4-3.8zM14 5.6c.7-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.8-1 2.9 1.1.1 2.1-.6 2.8-1.4z"/></svg><span data-ar="قريبًا في App Store" data-en="Coming soon to the App Store">قريبًا في App Store</span></span><a class="btn ghost" href="https://shmmuh8-design.github.io/Khidmati/" target="_blank" rel="noopener"><span data-ar="جرّبه على الويب" data-en="Try it on the web">جرّبه على الويب</span></a></div>
+  </section>
+  <section class="feats"><div class="f"><i>❄️</i><b data-ar="مكيفات وكهرباء وسباكة" data-en="AC, electrical and plumbing">مكيفات وكهرباء وسباكة</b></div><div class="f"><i>🏢</i><b data-ar="مؤسسات مرخّصة بسجل تجاري" data-en="Licensed companies with a CR">مؤسسات مرخّصة بسجل تجاري</b></div><div class="f"><i>⭐</i><b data-ar="تقييمات من الزبائن" data-en="Customer ratings">تقييمات من الزبائن</b></div><div class="f"><i>📞</i><b data-ar="تواصل مباشر بدون وسيط" data-en="Direct contact, no middleman">تواصل مباشر بدون وسيط</b></div></section>
+  <div class="links">
+    <a href="https://shmmuh8-design.github.io/Khidmati/privacy.html" target="_blank" rel="noopener"><span data-ar="🔒 سياسة الخصوصية" data-en="🔒 Privacy policy">🔒 سياسة الخصوصية</span></a>
+    <a href="mailto:design.omani1@gmail.com">✉️ design.omani1@gmail.com</a>
+    <a href="https://wa.me/96894005400" target="_blank" rel="noopener"><span data-ar="💬 واتساب الدعم" data-en="💬 WhatsApp support">💬 واتساب الدعم</span></a>
+  </div>
+  <h2 data-ar="تطبيقات ثانية من أضواء التقنية" data-en="More apps from TechLights">تطبيقات ثانية من أضواء التقنية</h2>
+  <section class="more"><a class="o" href="../manakh/"><img src="../icons/manakh.png" alt="" loading="lazy"><span data-ar="مناخ" data-en="Manakh">مناخ</span></a><a class="o" href="../suqya/"><img src="../icons/suqya.png" alt="" loading="lazy"><span data-ar="سُقيا" data-en="Suqya">سُقيا</span></a><a class="o" href="../rukhsati/"><img src="../icons/rukhsati.png" alt="" loading="lazy"><span data-ar="رخصتي" data-en="Rukhsati">رخصتي</span></a><a class="o" href="../mandoos/"><img src="../icons/mandoos.png" alt="" loading="lazy"><span data-ar="المندوس" data-en="Al Mandoos">المندوس</span></a></section>
+</main>
+<footer>© 2026 <a href="../"><span data-ar="أضواء التقنية · مسقط، سلطنة عُمان" data-en="TechLights · Muscat, Oman">أضواء التقنية · مسقط، سلطنة عُمان</span></a></footer>
+<script>
+const NAME = ["خدماتي", "Khidmati"];
+let EN = /^en/i.test(navigator.language || '') && !/^ar/i.test(navigator.language || '');
+try{ const s = localStorage.getItem('tl-lang'); if(s) EN = s === 'en'; }catch(e){}
+function applyLang(){
+  document.documentElement.lang = EN ? 'en' : 'ar'; document.documentElement.dir = EN ? 'ltr' : 'rtl'; document.body.classList.toggle('en', EN);
+  document.querySelectorAll('[data-ar]').forEach(n => n.textContent = EN ? n.dataset.en : n.dataset.ar);
+  document.getElementById('lang').textContent = EN ? 'العربية' : 'English';
+  document.title = NAME[EN ? 1 : 0] + (EN ? ' · TechLights' : ' · أضواء التقنية');
+}
+document.getElementById('lang').onclick = () => { EN = !EN; try{ localStorage.setItem('tl-lang', EN ? 'en' : 'ar'); }catch(e){} applyLang(); };
+applyLang();
+</script>
+</body>
+</html>

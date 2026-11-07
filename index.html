@@ -205,7 +205,7 @@ function draw(){
     el('div',{class:'chips'}, ...a.tags.map(t => el('span',{text:T(t)}))),
     el('div',{class:'acts'},
       el('a',{class:'store'+(a.live?'':' off'),href:a.store||'#',target:'_blank',rel:'noopener',text:a.live?T(['حمّله من App Store','Get it on App Store']):T(['قريبًا في App Store','Coming to App Store'])}),
-      a.web ? el('a',{href:a.web,target:'_blank',rel:'noopener',text:T(['جرّبه على الويب','Try on the web'])}) : null))));
+      el('a',{href:a.id+'/',text:T(['التفاصيل','Details'])})))));
   document.getElementById('nApps').textContent = APPS.length;
 }
 function applyLang(){
